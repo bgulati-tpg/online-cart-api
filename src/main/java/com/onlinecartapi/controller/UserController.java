@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinecartapi.domain.User;
-import com.onlinecartapi.domain.UserDto;
 import com.onlinecartapi.dto.LoginDto;
+import com.onlinecartapi.dto.UserDto;
 import com.onlinecartapi.security.JwtAuthenticationResponse;
 import com.onlinecartapi.security.JwtTokenProvider;
 import com.onlinecartapi.service.UserService;

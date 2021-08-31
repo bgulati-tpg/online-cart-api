@@ -1,4 +1,4 @@
-package com.onlinecartapi.domain;
+package com.onlinecartapi.dto;
 
 import java.io.Serializable;
 import java.util.Set;

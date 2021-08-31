@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onlinecartapi.domain.User;
-import com.onlinecartapi.domain.UserDto;
+import com.onlinecartapi.dto.UserDto;
 import com.onlinecartapi.repository.UserRepository;
 
 @Service
