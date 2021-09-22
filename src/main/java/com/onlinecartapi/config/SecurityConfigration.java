@@ -60,17 +60,18 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/users/authenticate").permitAll()
                 .antMatchers("/users/list").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/products/list").permitAll()
+              //  .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(unauthorizedHandler)
+               // .authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // Add our custom JWT security filter
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.headers().cacheControl();
-        http.csrf().disable();
+       // http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+       // http.headers().cacheControl();
+       // http.csrf().disable();
     }
 	
 	private PasswordEncoder getPasswordEncoder() {
