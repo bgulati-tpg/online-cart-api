@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinecartapi.domain.User;
 import com.onlinecartapi.dto.LoginDto;
+import com.onlinecartapi.dto.RegisterDto;
 import com.onlinecartapi.dto.UserDto;
 import com.onlinecartapi.security.JwtAuthenticationResponse;
 import com.onlinecartapi.security.JwtTokenProvider;
@@ -58,6 +60,14 @@ public class UserController {
 	        jwt = tokenProvider.generateToken(authentication);   	
 		}
 		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+	}
+	
+	@PostMapping(value = "/register")
+	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDto registerDto) {
+		String msg = userService.registerUser(registerDto.getEmail(), registerDto.getPassword(), registerDto.getName());
+		if("Success".equals(msg)) {
+			return (ResponseEntity<?>) ResponseEntity.ok(HttpStatus.CREATED);
+		} return  (ResponseEntity<?>) ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")

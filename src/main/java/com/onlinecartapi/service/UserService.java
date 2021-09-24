@@ -10,14 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onlinecartapi.domain.User;
+import com.onlinecartapi.domain.UserRole;
+import com.onlinecartapi.domain.UserRolePk;
 import com.onlinecartapi.dto.UserDto;
 import com.onlinecartapi.repository.UserRepository;
+import com.onlinecartapi.repository.UserRoleRepository;
 
 @Service
 public class UserService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	UserRoleRepository userRoleRepository;
 	
 	public List<UserDto> getAllUsers() {
 		List<User> userList = userRepository.findAll();
@@ -37,6 +43,23 @@ public class UserService {
 
 	public Optional<User> getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+
+	public String registerUser(String email, String password, String name) {
+		try {
+			User user =  new User(email, password, name);
+			user  = userRepository.save(user);
+			UserRole userRole =  new UserRole();
+			UserRolePk userRolePk = new UserRolePk();
+			userRolePk.setRoleId(2l);
+			userRolePk.setUserId(user.getUserId());
+			userRole.setUserRolePk(userRolePk);
+			userRoleRepository.save(userRole);
+			return "Success";
+		} catch(Exception ex) {
+			System.out.println("Exception: " + ex.getMessage());
+			return null;
+		}
 	}
 
 }

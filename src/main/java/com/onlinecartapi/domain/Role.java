@@ -30,6 +30,14 @@ public class Role implements Serializable {
 	@JoinColumn(name = "role_id", referencedColumnName ="role_id", insertable = false, updatable = false)
     private Set<UserRole> userRoles;
 
+    public Role() {
+    	
+    }
+	public Role(Long roleId) {
+		super();
+		this.roleId = roleId;
+	}
+
 	public Long getRoleId() {
 		return roleId;
 	}
