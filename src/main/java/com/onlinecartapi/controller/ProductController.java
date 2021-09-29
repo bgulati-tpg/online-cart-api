@@ -26,6 +26,7 @@ public class ProductController {
 	public List<ProductsDTO> getAllProduct(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {	
 		return service.getAllProducts(pageNum, pageSize);
 	}
+	
 	@GetMapping(value = "/getNumberOfPages/{pageSize}/{uuid}")
 	public Integer getNumberOfPages(@PathVariable Float pageSize, @PathVariable String uuid) {	
 		return service.getNumberOfPages(pageSize, uuid);
@@ -35,13 +36,25 @@ public class ProductController {
 	public ProductDetailDTO getProductDetails(@PathVariable String uuid) {	
 		return service.getProductDetails(uuid);
 	}
+	
 	@GetMapping(value = "/getCategories")
 	public List<CategoriesDTO> getCategories() {	
 		return service.getCategories();
 	}
+	
 	@GetMapping(value = "/getProductByCategories/{uuid}/{pageNum}/{pageSize}")
 	public List<ProductsDTO> getProductByCategories(@PathVariable String uuid, @PathVariable Integer pageNum, @PathVariable Integer pageSize) {	
 		return service.getProductByCategories(uuid, pageNum, pageSize);
+	}
+	
+	@GetMapping(value = "/getNumberOfPagesBySearch/{pageSize}/{keyword}")
+	public Integer getNumberOfPagesBySearch(@PathVariable Float pageSize, @PathVariable String keyword) {	
+		return service.getNumberOfPagesBySearch(pageSize, keyword);
+	}
+	
+	@GetMapping(value = "/getProductBySearch/{name}/{pageNum}/{pageSize}")
+	public List<ProductsDTO> getProductBySearch(@PathVariable String name, @PathVariable Integer pageNum, @PathVariable Integer pageSize) {	
+		return service.getProductBySearch(name, pageNum, pageSize);
 	}
 	
 }

@@ -37,6 +37,9 @@ public class ProductService {
 			return (int)Math.ceil(product_repo.countByCategoryId(pc.getId())/pageSize);
 		}
 	}
+	public Integer getNumberOfPagesBySearch(Float pageSize, String keyword){		
+		return (int)Math.ceil(product_repo.countByNameContaining(keyword)/pageSize);
+	}
 	
 	public List<ProductsDTO> getAllProducts(Integer pageNum, Integer pageSize){
 		List<ProductsDTO> productDTOList = new ArrayList<ProductsDTO>();
@@ -94,4 +97,23 @@ public class ProductService {
 		return productDTOList;
 	}
 	
+	public List<ProductsDTO> getProductBySearch(String keyword, Integer pageNum, Integer pageSize) {
+		List<ProductsDTO> productDTOList = new ArrayList<ProductsDTO>();
+		try {
+			List<Products> productList = new ArrayList<Products>();
+			Pageable paging = new PageRequest(pageNum, pageSize);
+			
+			Page<Products> pageProducts = product_repo.findByNameContainingOrderByNameAsc(keyword, paging);
+			productList = pageProducts.getContent();
+				
+			for(Products p : productList) {
+				productDTOList.add(new ProductsDTO(p.getName(), p.getRating(), p.getPrice(), p.getUuid()));
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println(e);
+	    }
+		return productDTOList;
+	}
 }

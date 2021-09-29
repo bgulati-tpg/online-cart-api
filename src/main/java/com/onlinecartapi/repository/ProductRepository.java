@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Products, Integer> {
 	Page<Products> findAll(Pageable pageable);
 	Page<Products> findByCategoryId(Integer category_id,Pageable pageable);
 	Long countByCategoryId(Integer category_id);
+	Long countByNameContaining(String keyword);
+	Page<Products> findByNameContainingOrderByNameAsc(String keyword, Pageable pageable);
 }
