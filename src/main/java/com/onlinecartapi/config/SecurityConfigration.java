@@ -62,6 +62,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/users/list").permitAll()
                 .antMatchers("/products/**").permitAll()
+                .antMatchers("/order/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
@@ -73,6 +74,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
         http.csrf().disable();
+        http.cors().disable();
     }
 	
 	private PasswordEncoder getPasswordEncoder() {
