@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -39,6 +40,11 @@ public class User implements Serializable {
 	@JoinColumn(name = "usr_id", referencedColumnName ="usr_id", insertable = false, updatable = false)
     private Set<UserRole> userRoles;
 
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="customerId")
+    private Set<Order> orders;
+	
+	
+	
 	public User() {
 
 	}
