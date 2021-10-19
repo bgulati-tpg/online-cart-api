@@ -33,7 +33,7 @@ public class DeliveryAddress {
 	private String pincode; 
 	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name = "order_id")
-	private Order orderId;
+	private OrderProduct orderId;
 	public Long getDeliveryId() {
 		return deliveryId;
 	}
@@ -82,10 +82,10 @@ public class DeliveryAddress {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-	public Order getOrderId() {
+	public OrderProduct getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(Order orderId) {
+	public void setOrderId(OrderProduct orderId) {
 		this.orderId = orderId;
 	}
 	

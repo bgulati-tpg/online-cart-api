@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinecartapi.domain.DeliveryAddress;
-import com.onlinecartapi.domain.Order;
+import com.onlinecartapi.domain.OrderProduct;
 import com.onlinecartapi.dto.OrderInfoDto;
-import com.onlinecartapi.service.OrderService;
+import com.onlinecartapi.service.OrderServiceI;
 import com.onlinecartapi.service.ProductService;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderInfoController {
 	
-	@Autowired OrderService service;
+	@Autowired OrderServiceI service;
 
 	@PostMapping(value = "/")
 	public ResponseEntity<?> placeOrder(@Valid @RequestBody OrderInfoDto orderDto) {
-		Order order=new Order();
+		OrderProduct order=new OrderProduct();
 		StringBuffer sb=new StringBuffer();
 		Double double1 = new Double(0);
 		for(int i=0;i<orderDto.getOrderedProduct().size();i++) {

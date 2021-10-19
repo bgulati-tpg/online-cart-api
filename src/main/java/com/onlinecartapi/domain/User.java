@@ -41,7 +41,7 @@ public class User implements Serializable {
     private Set<UserRole> userRoles;
 
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="customerId")
-    private Set<Order> orders;
+    private Set<OrderProduct> orders;
 	
 	
 	

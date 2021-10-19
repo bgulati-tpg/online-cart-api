@@ -16,14 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="orders")
-public class Order {
-	
-	//order_id int PK 
-		//product_name varchar(45) 
-		//date_time datetime 
-		//total_amount double 
-		//customer_id int
-	
+public class OrderProduct {
 	@Id
 	@Column(name = "order_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
