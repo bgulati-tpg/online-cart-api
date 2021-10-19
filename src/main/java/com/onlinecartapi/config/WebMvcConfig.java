@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.validation.MessageCodesResolver;
 import org.springframework.validation.Validator;
@@ -33,6 +34,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
                 .maxAge(MAX_AGE_SECS);
     }
+    
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+
+        configurer.favorParameter(false).
+        ignoreAcceptHeader(false).
+        defaultContentType(MediaType.APPLICATION_JSON).
+        mediaType("json", MediaType.APPLICATION_JSON).
+        mediaType("xml", MediaType.APPLICATION_XML);
+        }
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> arg0) {
@@ -76,11 +87,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		
 	}
 
-	@Override
+	/*@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer arg0) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer arg0) {

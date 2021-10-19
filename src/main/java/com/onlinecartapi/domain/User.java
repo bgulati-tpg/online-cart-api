@@ -53,6 +53,10 @@ public class User implements Serializable {
 		this.password = password;
 		this.name = name;
 	}
+	
+	public User (Long userId) {
+		this.userId = userId;
+	}
 	public User (User user) {
 		this.userId = user.getUserId();
 		this.name = user.getName();
