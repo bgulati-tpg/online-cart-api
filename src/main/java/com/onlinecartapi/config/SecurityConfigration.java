@@ -75,7 +75,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
         http.csrf().disable();
-        http.cors().disable();
+        http.cors();
     }
 	
 	private PasswordEncoder getPasswordEncoder() {
